@@ -1,10 +1,10 @@
 import type { SiteConfig, SiteContent } from "../types";
 
 export const SITE_CONFIG: SiteConfig = {
-  title: "Alejandro Múnez — Mobile & Web Developer",
-  author: "Alejandro Múnez Cuntez",
+  title: "Seth Williams — Emerging Tech Engineer | AI, ML, & Decentralized Systems",
+  author: "Seth Williams",
   description:
-    "Software Engineer based in San Francisco, USA. I specialize in UI design, web and mobile application development and maintenance.",
+    "Versatile Software and Chemical Engineer based in Orlando, FL, exploring AI/ML, blockchain, and full-stack development",
   lang: "en",
   siteLogo: "/alejandro-small.jpg",
   navLinks: [
@@ -13,11 +13,10 @@ export const SITE_CONFIG: SiteConfig = {
     { text: "About", href: "#about" },
   ],
   socialLinks: [
-    { text: "Twitter", href: "https://github.com/immois/astro-zen" },
-    { text: "LinkedIn", href: "https://github.com/immois/astro-zen" },
-    { text: "Github", href: "https://github.com/immois/astro-zen" },
-    { text: "Youtube", href: "https://github.com/immois/astro-zen" },
-    { text: "Dribbble", href: "https://github.com/immois/astro-zen" },
+    { text: "LinkedIn", href: "https://www.linkedin.com/in/seth-m-williams/" },
+    { text: "Github", href: "https://github.com/swilliams2000" },
+    { text: "Youtube", href: "https://www.youtube.com/@sethwilliams8033" },
+    { text: "Hugging Face", href: "https://huggingface.co/SWilliams20" },
   ],
   socialImage: "/zen-og.png",
   canonicalURL: "https://astro-zen.vercel.app",
