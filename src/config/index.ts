@@ -37,9 +37,10 @@ export const SITE_CONTENT: SiteContent = {
       startDate: "July 2023",
       endDate: "Present",
       summary: [
-        "Implemented advanced memory management and code optimization techniques, resulting in a reduction in application load time by 40% and a decrease in crashes by 25%. This significantly improved user experience and increased user retention by 20%.",
-        "I led a team of developers in building and integrating new features using Jetpack Android components such as LiveData and ViewModel. This enabled us to build scalable and maintainable applications, reducing the crash rate by 20% and speeding up the time to delivery of new features by 15%.",
-        "Integrated Google Pay for in-app purchases, resulting in a 35% increase in mobile transaction revenue. Additionally, implemented Firebase Analytics to gain insights into user behavior, enabling data-driven optimizations and a 30% increase in user retention.",
+        "Built <strong>digital twins</strong> of new production lines using <strong>Emulate3D</strong>, testing <strong>control logic</strong> and buffer strategies, reducing potential downtime by <strong>30%</strong> before physical installation.",
+      "Developed <strong>Python scripts</strong> to automate simulation parameter updates (downtime, cycle times, scrap), saving <strong>20+ hours per week</strong> of manual data entry.",
+      "Integrated simulation results with <strong>SQL databases</strong> to track KPIs like throughput, uptime, and material flow efficiency, increasing model-based predictions’ accuracy by <strong>25%</strong>.",
+      "Collaborated with controls engineers to validate simulation data against real-time <strong>PLC signals</strong>, reducing discrepancies between simulated and actual line performance by <strong>15%</strong>."
       ],
     },
     {
@@ -48,8 +49,10 @@ export const SITE_CONTENT: SiteContent = {
       startDate: "January 2023",
       endDate: "July 2023",
       summary: [
-        "I designed and developed a mobile application using Flutter, allowing it to be deployed on both Android and iOS with a single codebase. This reduced development time by 50% and maintenance costs by 30%, facilitating a consistent user experience on both platforms.",
-        "I integrated biometric authentication and data encryption, significantly improving the security of user data. This implementation resulted in a 40% increase in user trust and a 25% reduction in unauthorized access attempts.",
+         "Designed and deployed a <strong>mobile app in Flutter</strong> for Android and iOS, increasing volunteer engagement by <strong>40%</strong> and reducing service request response time by <strong>25%</strong>.",
+      "Implemented <strong>biometric authentication</strong> and <strong>data encryption</strong>, improving data security and lowering unauthorized access incidents by <strong>30%</strong>.",
+      "Created <strong>data visualization dashboards</strong> for management, enabling faster allocation of resources and improving operational efficiency by <strong>20%</strong>.",
+      "Analyzed service request data to identify trends, contributing to a <strong>15%</strong> increase in program outreach effectiveness."
       ],
     },
     {
@@ -58,8 +61,10 @@ export const SITE_CONTENT: SiteContent = {
       startDate: "Feb 2017",
       endDate: "May 2018",
       summary: [
-        "I designed and developed a mobile application using Flutter, allowing it to be deployed on both Android and iOS with a single codebase. This reduced development time by 50% and maintenance costs by 30%, facilitating a consistent user experience on both platforms.",
-        "I integrated biometric authentication and data encryption, significantly improving the security of user data. This implementation resulted in a 40% increase in user trust and a 25% reduction in unauthorized access attempts.",
+        "Designed Python-based <strong>data pipelines</strong> to clean and process sensor data from high-speed packaging lines, handling over <strong>2 million data points per week</strong>.",
+      "Applied <strong>machine learning models</strong> to predict scrap rates, reducing material waste by <strong>12%</strong> on targeted lines.",
+      "Built <strong>Power BI dashboards</strong> to visualize downtime, buffer usage, and yield trends, increasing visibility for operations leadership and supporting <strong>data-driven decision-making</strong>.",
+      "Conducted statistical analysis recommending parameter adjustments that reduced waste variability by <strong>18%</strong>."
       ],
     },
     {
@@ -68,8 +73,10 @@ export const SITE_CONTENT: SiteContent = {
       startDate: "Jun 2015",
       endDate: "Oct 2016",
       summary:[
-        "I designed and developed a mobile application using Flutter, allowing it to be deployed on both Android and iOS with a single codebase. This reduced development time by 50% and maintenance costs by 30%, facilitating a consistent user experience on both platforms.",
-        "I integrated biometric authentication and data encryption, significantly improving the security of user data. This implementation resulted in a 40% increase in user trust and a 25% reduction in unauthorized access attempts.",
+       "Developed <strong>C# and .NET applications</strong> to automate report generation, saving engineers <strong>10+ hours weekly</strong> on manual reporting.",
+      "Built a <strong>web-based dashboard (React + Node)</strong> to visualize real-time metrics from test equipment, improving engineer accessibility and reducing issue detection time by <strong>25%</strong>.",
+      "Integrated software tools with <strong>MSSQL databases</strong>, cutting manual data entry by <strong>50%</strong> and improving cross-team collaboration.",
+      "Wrote <strong>unit tests with XUnit</strong>, improving software reliability and reducing post-deployment defects by <strong>15%</strong>."
       ],
     },
   ],
