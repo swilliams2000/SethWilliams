@@ -67,8 +67,10 @@ export const SITE_CONTENT: SiteContent = {
       position: "Software Engineer Intern",
       startDate: "Jun 2015",
       endDate: "Oct 2016",
-      summary:
-        "Developed and integrated a real-time vehicle tracking system using WebSockets, improving accuracy and data update in the application. This functionality increased user satisfaction by 30% and reduced customer service inquiries by 25%.",
+      summary:[
+        "I designed and developed a mobile application using Flutter, allowing it to be deployed on both Android and iOS with a single codebase. This reduced development time by 50% and maintenance costs by 30%, facilitating a consistent user experience on both platforms.",
+        "I integrated biometric authentication and data encryption, significantly improving the security of user data. This implementation resulted in a 40% increase in user trust and a 25% reduction in unauthorized access attempts.",
+      ],
     },
   ],
   projects: [
@@ -96,9 +98,9 @@ export const SITE_CONTENT: SiteContent = {
   ],
   about: {
     description: `
-      Hi, I’m Alejandro Múnez, a passionate Mobile and Web Developer with a knack for crafting seamless digital experiences. With a strong background in both Android and iOS development, as well as front-end web technologies, I thrive in the intersection where creativity meets technology.
+      Howdy, I’m Seth Williams, a passionate machine learning and blockchain developer exploring how intelligent systems and decentralized technologies can transform the way we live and work. I’m focused on building scalable, secure, and innovative solutions that push the boundaries of what’s possible in these fast-moving fields.
 
-      Over the years, I’ve honed my skills in building robust, user-friendly applications that not only meet the needs of users but also push the boundaries of what’s possible. My projects range from innovative mobile applications to responsive web designs, all with a focus on performance, security, and scalability.
+      My foundation in chemical engineering gives me a unique perspective on solving complex problems, combining analytical thinking with practical, real world applications. By bridging my engineering background with my software experience, I aim to create impactful technologies that are both creative and grounded in strong technical rigor.
     `,
     image: "/alejandro-big.jpg",
   },
