@@ -1,29 +1,43 @@
----
+--- 
 import Section from "./Section.astro";
 import { Image } from "astro:assets";
 import type { AboutProps, HeroProps } from "@types";
 
 type Props = AboutProps & Pick<HeroProps, "name">;
-
 const { description, image, name } = Astro.props;
 ---
+
 <Section text="About Me" href="about">
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
+    
+    <!-- Description -->
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
-
-    <!-- Polaroid with hover leveling -->
-    <div
-      class="h-80 w-64 flex-shrink-0 bg-white p-4 rounded-2xl shadow-xl transform rotate-[5deg] md:rotate-[7deg] transition-transform duration-500 hover:rotate-0"
-    >
-      <Image
-        class="object-cover w-full h-full rounded-2xl"
-        src={image}
-        width="260"
-        height="260"
-        alt={name}
-      />
-      <!-- Polaroid bottom -->
-      <div class="mt-4 h-10 w-full bg-white rounded-b-2xl"></div>
+    
+    <!-- Polaroid Container -->
+    <div class="relative w-64">
+      
+      <!-- Card with tilt -->
+      <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform rotate-[7deg] transition-transform duration-500 hover:rotate-0">
+        
+        <!-- Image -->
+        <div class="w-full h-64 overflow-hidden">
+          <Image
+            class="w-full h-full object-cover"
+            src={image}
+            width="260"
+            height="260"
+            alt={name}
+          />
+        </div>
+        
+        <!-- Bottom Polaroid border -->
+        <div class="h-12 w-full bg-white"></div>
+      </div>
+      
+      <!-- Optional subtle background rectangle behind polaroid -->
+      <div class="absolute top-2 left-2 w-full h-full bg-blue-200 rounded-2xl opacity-30 -z-10"></div>
     </div>
+    
   </div>
 </Section>
+
