@@ -14,19 +14,15 @@ const { description, image, name } = Astro.props;
 
     <div class="relative w-64 group">
       <!-- Light blue faded rectangle behind -->
-      <div class="absolute top-2 left-2 w-full h-full bg-blue-200 rounded-2xl opacity-40 transform -rotate-3 transition-opacity duration-500 group-hover:opacity-0"></div>
+      <div class="absolute top-2 left-2 w-full h-full bg-blue-200 rounded-2xl opacity-30 transform rotate-3 transition-opacity duration-500 group-hover:opacity-0"></div>
 
       <!-- Polaroid card -->
-      <div
-        class="relative z-10 bg-white rounded-2xl shadow-xl transform -rotate-6 transition-transform duration-500 group-hover:rotate-0"
-      >
+      <div class="relative z-10 bg-white rounded-2xl shadow-xl transform rotate-6 transition-transform duration-500 group-hover:rotate-0">
         <!-- Image -->
         <div class="overflow-hidden rounded-t-2xl">
           <Image
-            class="object-cover w-full h-80"
+            class="object-cover w-full aspect-[4/5]"
             src={image}
-            width="260"
-            height="260"
             alt={name}
           />
         </div>
