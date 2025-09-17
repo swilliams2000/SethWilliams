@@ -12,17 +12,18 @@ const { description, image, name } = Astro.props;
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
 
-    <div class="relative w-64 h-[340px] group">
-      <!-- Light blue faded rectangle -->
-      <div class="absolute top-2 left-2 w-full h-full bg-blue-200 rounded-2xl opacity-40 transform rotate-3 transition-opacity duration-500 group-hover:opacity-0"></div>
+    <div class="relative w-64 group">
+      <!-- Light blue faded rectangle behind -->
+      <div class="absolute top-2 left-2 w-full h-full bg-blue-200 rounded-2xl opacity-40 transform -rotate-3 transition-opacity duration-500 group-hover:opacity-0"></div>
 
       <!-- Polaroid card -->
       <div
-        class="relative z-10 bg-white rounded-2xl shadow-xl p-4 flex flex-col justify-end transform -rotate-6 transition-transform duration-500 group-hover:rotate-0"
+        class="relative z-10 bg-white rounded-2xl shadow-xl transform -rotate-6 transition-transform duration-500 group-hover:rotate-0"
       >
-        <div class="overflow-hidden rounded-xl">
+        <!-- Image -->
+        <div class="overflow-hidden rounded-t-2xl">
           <Image
-            class="object-cover w-full h-64"
+            class="object-cover w-full h-80"
             src={image}
             width="260"
             height="260"
@@ -30,7 +31,7 @@ const { description, image, name } = Astro.props;
           />
         </div>
         <!-- Bottom polaroid border -->
-        <div class="mt-4 h-10 w-full bg-white"></div>
+        <div class="h-12 w-full bg-white"></div>
       </div>
     </div>
   </div>
