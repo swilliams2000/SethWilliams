@@ -41,9 +41,7 @@
   --tracking-tight: -0.25px;
 
   --animate-slide-in: slide-in 600ms ease both;
-  strong {
-  color: var(--color-white); /* bright white */
-  font-weight: 700;           /* bold */
+  
 }
   @keyframes slide-in {
     10% {
@@ -53,4 +51,9 @@
       transform: translateY(0);
     }
   }
+}
+/* Move this outside @theme */
+strong {
+  color: var(--color-white); /* bright white */
+  font-weight: 700;           /* bold */
 }
