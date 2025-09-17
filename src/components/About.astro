@@ -11,17 +11,21 @@ const { description, image, name } = Astro.props;
 <Section text="About Me" href="about">
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
-    
-    <div
-      class="h-80 w-64 flex-shrink-0 rotate-[5deg] bg-[#1c232d] p-4 rounded-2xl shadow-lg md:rotate-[7deg]"
-    >
-      <Image
-        class="object-cover w-full h-full rounded-2xl"
-        src={image}
-        width="260"
-        height="260"
-        alt={name}
-      />
+
+    <div class="relative group">
+      <!-- Polaroid card -->
+      <div
+        class="h-80 w-64 bg-white p-4 rounded-2xl shadow-lg border-4 border-[#2563eb] 
+               transform transition duration-500 ease-in-out group-hover:-rotate-6 group-hover:border-white"
+      >
+        <Image
+          class="object-cover w-full h-full rounded-xl"
+          src={image}
+          width="260"
+          height="260"
+          alt={name}
+        />
+      </div>
     </div>
   </div>
 </Section>
