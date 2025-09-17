@@ -42,11 +42,36 @@ const ogImgUrl = canonicalURL + socialImage;
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImgUrl} />
   </head>
-  <body class="bg-black font-sans">
+  <body class="bg-black font-sans relative overflow-hidden">
+    <!-- Shooting Star Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <!-- Static stars -->
+      <div class="absolute inset-0">
+        {Array.from({ length: 150 }).map((_, i) => (
+          <div
+            class="absolute bg-white rounded-full opacity-70"
+            style={`top: ${Math.random() * 100}%; left: ${Math.random() * 100}%; width: ${Math.random() * 2 + 1}px; height: ${Math.random() * 2 + 1}px;`}
+          />
+        ))}
+      </div>
+
+      <!-- Shooting stars -->
+      <div class="absolute inset-0 overflow-visible">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div
+            class="absolute bg-blue-400 opacity-90 w-[2px] h-20 animate-shooting-star"
+            style={`top: ${Math.random() * 100}%; left: ${Math.random() * 100}%; animation-delay: ${Math.random() * 5}s;`}
+          />
+        ))}
+      </div>
+    </div>
+
     <Header siteLogo={siteLogo} navLinks={navLinks} />
-    <main class="mx-auto max-w-3xl px-5">
+
+    <main class="mx-auto max-w-3xl px-5 relative z-10">
       <slot />
     </main>
+
     <Footer author={author} socialLinks={socialLinks} />
   </body>
 </html>
