@@ -102,6 +102,11 @@ export const SITE_CONTENT: SiteContent = {
       linkSource: "https://github.com/immois/astro-zen",
       image: "/clone-ig.png",
     },
+    {
+      name: "Arduino Wall Sensing Robot",
+      summary: "Built and programmed an Arduino robot to autonomously avoid obstacles, teaching hands-on STEM skills for the Girl Scouts of America.",
+      image: "/Robot.jpg",
+    },
   ],
   about: {
     description: `
