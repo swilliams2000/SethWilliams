@@ -13,9 +13,9 @@ const { description, image, name } = Astro.props;
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
 
     <div class="relative w-64 h-[360px] group">
-      <!-- Blue background -->
+      <!-- Light blue rectangle behind polaroid -->
       <div
-        class="absolute inset-0 rounded-2xl bg-[#2563eb] opacity-0 transform rotate-[-3deg] transition-opacity duration-700 group-hover:opacity-30"
+        class="absolute top-4 left-4 w-full h-full bg-[#2563eb] rounded-2xl opacity-30 transform -rotate-[5deg] transition-all duration-700 group-hover:opacity-0"
       ></div>
 
       <!-- Polaroid card -->
@@ -31,7 +31,7 @@ const { description, image, name } = Astro.props;
             alt={name}
           />
         </div>
-        <!-- Polaroid bottom border -->
+        <!-- Polaroid bottom white area -->
         <div class="mt-4 h-16 w-full bg-white"></div>
       </div>
     </div>
