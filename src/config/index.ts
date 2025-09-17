@@ -1,4 +1,4 @@
-import type { SiteConfig, SiteContent } from "../types";
+-import type { SiteConfig, SiteContent } from "../types";
 
 export const SITE_CONFIG: SiteConfig = {
   title: "Seth Williams — Emerging Tech Engineer | AI, ML, & Decentralized Systems",
@@ -102,7 +102,7 @@ export const SITE_CONTENT: SiteContent = {
 
       My foundation in chemical engineering gives me a unique perspective on solving complex problems, combining analytical thinking with practical, real world applications. By bridging my engineering background with my software experience, I aim to create impactful technologies that are both creative and grounded in strong technical rigor.
     `,
-    image: "/alejandro-big.jpg",
+    image: "/Seth-Big.jpg",
   },
 };
 
