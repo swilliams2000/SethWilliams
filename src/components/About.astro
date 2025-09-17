@@ -12,15 +12,25 @@ const { description, image, name } = Astro.props;
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
 
-    <!-- Simple tilted polaroid -->
-    <div class="h-80 w-64 flex-shrink-0 rotate-[5deg] bg-white p-4 rounded-2xl shadow-lg md:rotate-[7deg]">
-      <Image
-        class="object-cover w-full h-full rounded-2xl"
-        src={image}
-        width="260"
-        height="260"
-        alt={name}
-      />
+    <!-- Polaroid container -->
+    <div class="relative w-64 group">
+      <!-- Polaroid card -->
+      <div
+        class="bg-white rounded-2xl shadow-lg p-4 transform -rotate-6 transition-transform duration-500 group-hover:rotate-0"
+      >
+        <!-- Image part -->
+        <div class="overflow-hidden rounded-t-xl">
+          <Image
+            class="object-cover w-full h-64"
+            src={image}
+            width="260"
+            height="260"
+            alt={name}
+          />
+        </div>
+        <!-- White bottom frame for polaroid -->
+        <div class="mt-4 h-12 w-full bg-white rounded-b-xl"></div>
+      </div>
     </div>
   </div>
 </Section>
