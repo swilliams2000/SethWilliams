@@ -12,29 +12,24 @@ const { description, image, name } = Astro.props;
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
     <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
 
-    <div class="relative w-64 h-[360px] group">
-      <!-- Light blue rectangle behind polaroid -->
-      <div
-        class="absolute top-4 left-4 w-full h-full bg-[#2563eb] rounded-2xl opacity-30 transform -rotate-[5deg] transition-all duration-700 group-hover:opacity-0"
-      ></div>
-
-      <!-- Polaroid card -->
-      <div
-        class="relative z-10 bg-white rounded-2xl shadow-xl p-4 flex flex-col justify-end transform -rotate-[10deg] transition-transform duration-700 group-hover:rotate-0"
-      >
-        <div class="overflow-hidden rounded-xl">
-          <Image
-            class="object-cover w-full h-64"
-            src={image}
-            width="260"
-            height="260"
-            alt={name}
-          />
-        </div>
-        <!-- Polaroid bottom white area -->
-        <div class="mt-4 h-16 w-full bg-white"></div>
+    <!-- Polaroid container -->
+    <div
+      class="w-64 flex-shrink-0 bg-white p-4 transform rotate-[5deg] md:rotate-[7deg] 
+             transition-transform duration-500 hover:rotate-0 shadow-lg"
+    >
+      <!-- Image -->
+      <div class="overflow-hidden rounded-t-xl">
+        <Image
+          class="object-cover w-full h-64"
+          src={image}
+          width="260"
+          height="260"
+          alt={name}
+        />
       </div>
+
+      <!-- Bottom polaroid frame -->
+      <div class="bg-white h-16 w-full mt-4"></div>
     </div>
   </div>
 </Section>
-
