@@ -1,25 +1,26 @@
 ---
+// Header.astro
+import type { HeaderProps } from "@types";
 import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
-import type { HeaderProps } from "@types";
 
-type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-4 max-w-5xl mx-auto">
-  <!-- Left side: Logo + nav -->
+  <!-- Left: logo + nav -->
   <div class="flex items-center gap-6">
     <a href="/" aria-label="Home link">
       <Image src={siteLogo} width="45" height="45" alt="website logo" class="rounded-full"/>
     </a>
+
     <nav class="hidden sm:block">
-      <ul class="flex gap-4">
+      <ul class="flex gap-6">
         {navLinks.map((link) => (
           <li class="relative">
             <a
               href={link.href}
-              class="text-neutral transition-colors hover:text-white font-medium text-sm relative after:absolute after:bottom-0 after:left-1/2 after:w-1 after:h-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100"
+              class="text-neutral hover:text-white text-sm font-medium relative after:absolute after:bottom-0 after:left-1/2 after:w-1 after:h-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100 transition-colors duration-300"
             >
               {link.text}
             </a>
@@ -29,16 +30,27 @@ const { siteLogo, navLinks } = Astro.props;
     </nav>
   </div>
 
-  <!-- Right side: social icons -->
+  <!-- Right: social icons -->
   <div class="hidden sm:flex gap-4">
-    <a href="Sethcooliemon4@gmail.com" class="text-neutral hover:text-white transition-colors">
-      <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
+    <!-- Email -->
+    <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M2 4v16h20V4H2zm18 2v.511l-8 5-8-5V6h16zM4 18V8.489l7.446 4.654a1 1 0 0 0 1.108 0L20 8.489V18H4z"/>
+      </svg>
     </a>
-    <a href="https://github.com/swilliams2000" class="text-neutral hover:text-white transition-colors">
-      <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
+
+    <!-- GitHub -->
+    <a href="https://github.com/swilliams2000" target="_blank" rel="noopener" class="text-neutral hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.335-5.467-5.933 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3-.404 11.52 11.52 0 0 1 3 .404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .319.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+      </svg>
     </a>
-    <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-neutral hover:text-white transition-colors">
-      <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener" class="text-neutral hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+        <path d="M4.98 3.5c0 1.381-1.115 2.5-2.49 2.5C1.116 6 0 4.881 0 3.5 0 2.119 1.116 1 2.49 1c1.375 0 2.49 1.119 2.49 2.5zM0 8.998h4.978v15H0v-15zm7.496 0h4.772v2.055h.068c.664-1.258 2.285-2.585 4.7-2.585 5.025 0 5.956 3.308 5.956 7.604v8.926h-4.978v-7.922c0-1.888-.034-4.316-2.625-4.316-2.629 0-3.031 2.053-3.031 4.178v8.06H7.496v-15z"/>
+      </svg>
     </a>
   </div>
 
@@ -57,43 +69,37 @@ const { siteLogo, navLinks } = Astro.props;
       </li>
     ))}
     <li class="flex gap-3 mt-2">
-      <a href="" class="text-neutral hover:text-white"><img src="/Email.svg" alt="Email" class="w-5 h-5"/></a>
-      <a href="" class="text-neutral hover:text-white"><img src="/Github.svg" alt="GitHub" class="w-5 h-5"/></a>
-      <a href="" class="text-neutral hover:text-white"><img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/></a>
+      <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path d="M2 4v16h20V4H2zm18 2v.511l-8 5-8-5V6h16zM4 18V8.489l7.446 4.654a1 1 0 0 0 1.108 0L20 8.489V18H4z"/>
+        </svg>
+      </a>
+      <a href="https://github.com/swilliams2000" target="_blank" rel="noopener" class="text-neutral hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.335-5.467-5.933 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3-.404 11.52 11.52 0 0 1 3 .404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .319.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener" class="text-neutral hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+          <path d="M4.98 3.5c0 1.381-1.115 2.5-2.49 2.5C1.116 6 0 4.881 0 3.5 0 2.119 1.116 1 2.49 1c1.375 0 2.49 1.119 2.49 2.5zM0 8.998h4.978v15H0v-15zm7.496 0h4.772v2.055h.068c.664-1.258 2.285-2.585 4.7-2.585 5.025 0 5.956 3.308 5.956 7.604v8.926h-4.978v-7.922c0-1.888-.034-4.316-2.625-4.316-2.629 0-3.031 2.053-3.031 4.178v8.06H7.496v-15z"/>
+        </svg>
+      </a>
     </li>
   </ul>
 </nav>
 
-<script lang="ts">
-  // Mobile toggle
+<script>
+  // Mobile menu toggle
   const menuButton = document.getElementById("menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
+
+  menuButton?.addEventListener("click", () => {
+    if (mobileMenu) {
       const isHidden = mobileMenu.classList.toggle("hidden");
       menuButton.setAttribute("aria-expanded", String(!isHidden));
-    });
-  }
-
-  // Scroll-tracking dot indicator
-  const navItems = document.querySelectorAll('header nav ul li a');
-  const sections = document.querySelectorAll('section[id]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      navItems.forEach(item => {
-        const href = item.getAttribute('href') ?? '';
-        if (href === `#${entry.target.id}` && entry.isIntersecting) {
-          item.classList.add('text-white');
-          item.classList.add('after:opacity-100');
-        } else {
-          item.classList.remove('text-white');
-          item.classList.remove('after:opacity-100');
-        }
-      });
-    });
-  }, { threshold: 0.6 });
-
-  sections.forEach(section => observer.observe(section));
+    }
+  });
 </script>
+
 
 
