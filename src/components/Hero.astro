@@ -10,7 +10,10 @@ const resumeUrl = "#";
 <section class="w-full min-h-screen flex flex-col justify-center items-center text-white" id="hero">
   <!-- Typing animation -->
   <h1 class="text-6xl md:text-7xl font-bold font-serif mb-6 text-center">
-    <span id="typed-text"></span><span class="blinking-cursor">|</span>
+    <span id="typed-before"></span>
+    <span class="glow-text" id="typed-name">Seth</span>
+    <span id="typed-after"></span>
+    <span class="blinking-cursor">|</span>
   </h1>
 
   <!-- Animated content container -->
@@ -46,38 +49,40 @@ const resumeUrl = "#";
 </section>
 
 <script type="module">
-  const typedText = document.getElementById("typed-text");
+  const typedBefore = document.getElementById("typed-before");
+  const typedAfter = document.getElementById("typed-after");
   const cursor = document.querySelector(".blinking-cursor");
-  const textParts = ["howdy, ", "Seth", " here."];
-  let part = 0;
-  let subIndex = 0;
 
-  function type() {
-    if (part < textParts.length) {
-      let typedSoFar = "";
-      for (let i = 0; i < part; i++) {
-        typedSoFar += i === 1
-          ? `<span class="glow-text">${textParts[i]}</span>`
-          : textParts[i];
-      }
+  const fullBefore = "howdy, ";
+  const fullAfter = " here.";
 
-      let currentChar = textParts[part].slice(0, subIndex + 1);
-      if (part === 1) currentChar = `<span class="glow-text">${currentChar}</span>`;
-      typedText.innerHTML = typedSoFar + currentChar;
+  let beforeIndex = 0;
+  let afterIndex = 0;
 
-      subIndex++;
-      if (subIndex >= textParts[part].length) {
-        subIndex = 0;
-        part++;
-      }
-      setTimeout(type, 120);
+  function typeBefore() {
+    if (beforeIndex < fullBefore.length) {
+      typedBefore.textContent += fullBefore[beforeIndex];
+      beforeIndex++;
+      setTimeout(typeBefore, 120);
+    } else {
+      typeAfter();
+    }
+  }
+
+  function typeAfter() {
+    if (afterIndex < fullAfter.length) {
+      typedAfter.textContent += fullAfter[afterIndex];
+      afterIndex++;
+      setTimeout(typeAfter, 120);
     } else {
       cursor.classList.add("blink");
       document.querySelector('.animate-fade-in').classList.add('opacity-100');
     }
   }
 
-  type();
+  typedBefore.textContent = "";
+  typedAfter.textContent = "";
+  typeBefore();
 </script>
 
 <style>
@@ -95,7 +100,7 @@ const resumeUrl = "#";
     transition: opacity 1s ease-in-out;
   }
 
-  /* Gradient shine + subtle scale pulse for "Seth" */
+  /* Glow + gradient pulse for "Seth" */
   .glow-text {
     display: inline-block;
     font-weight: bold;
@@ -116,6 +121,4 @@ const resumeUrl = "#";
     50% { transform: scale(1.08); }
   }
 </style>
-
-
 
