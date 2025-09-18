@@ -1,4 +1,5 @@
 ---
+// Header.astro
 import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
 import type { HeaderProps } from "@types";
@@ -8,7 +9,6 @@ const { siteLogo, navLinks } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6">
-  <!-- Logo -->
   <a href="/" aria-label="Home link">
     <Image
       class="rounded-full"
@@ -19,7 +19,6 @@ const { siteLogo, navLinks } = Astro.props;
     />
   </a>
 
-  <!-- Mobile menu button -->
   <button
     type="button"
     id="menu-button"
@@ -30,7 +29,6 @@ const { siteLogo, navLinks } = Astro.props;
     <Menu />
   </button>
 
-  <!-- Navigation -->
   <nav
     class="absolute top-20 right-5 hidden rounded-xl border border-neutral/40 bg-black px-4 py-5 text-neutral sm:static sm:block sm:border-0 sm:bg-transparent sm:p-0"
     id="main-menu"
@@ -39,7 +37,9 @@ const { siteLogo, navLinks } = Astro.props;
       {navLinks.map((link) => (
         <li class="relative">
           <a
-            class="nav-item relative block p-2 text-sm font-medium transition-all duration-500 hover:text-white"
+            class={`nav-item relative block p-2 text-sm font-medium transition-all duration-500
+              after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4
+              after:text-primary after:opacity-0 after:content-['•'] hover:text-white`}
             href={link.href}
           >
             {link.text}
@@ -51,7 +51,7 @@ const { siteLogo, navLinks } = Astro.props;
 </header>
 
 <script>
-  // Mobile menu toggle
+  // Toggle mobile menu
   const button = document.querySelector("#menu-button");
   const menu = document.querySelector("#main-menu");
   const navItems = document.querySelectorAll("#main-menu > ul > li > a");
@@ -63,54 +63,39 @@ const { siteLogo, navLinks } = Astro.props;
   };
 
   button?.addEventListener("click", toggleMenu);
-  navItems.forEach((item) => item?.addEventListener("click", toggleMenu));
-
-  // Intersection Observer for active dot
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        navItems.forEach((item) => {
-          if (item.getAttribute("href") === `#${entry.target.id}`) {
-            item.classList.add("active-dot");
-          } else {
-            item.classList.remove("active-dot");
-          }
-        });
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  document.querySelectorAll("section").forEach((section) => {
-    observer.observe(section);
+  navItems.forEach((item) => {
+    item?.addEventListener("click", toggleMenu);
   });
 
-  // Cleanup observer when tab hidden
+  // Intersection Observer for active nav dot
+  const observerOptions = {
+    root: null,
+    rootMargin: "-100px 0px -50% 0px", // adjust for sticky header
+    threshold: 0.25,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.id;
+      navItems.forEach((item) => {
+        const href = item.getAttribute("href")?.replace("#", "");
+        if (href === id && entry.isIntersecting) {
+          item.classList.add("text-white", "md:after:opacity-100");
+        } else {
+          item.classList.remove("text-white", "md:after:opacity-100");
+        }
+      });
+    });
+  }, observerOptions);
+
+  document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+
+  // Re-observe on visibility change
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") {
-      observer.disconnect();
+    if (document.visibilityState === "visible") {
+      document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
     } else {
-      document.querySelectorAll("section").forEach((section) => observer.observe(section));
+      observer.disconnect();
     }
   });
 </script>
-
-<style>
-  /* Active dot under nav items */
-  .nav-item.active-dot::after {
-    content: '•';
-    color: #3b82f6; /* blue */
-    position: absolute;
-    bottom: -0.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1rem;
-    opacity: 1;
-    transition: opacity 0.3s;
-  }
-
-  /* Optional: ensure nav items relative for dot positioning */
-  .nav-item {
-    position: relative;
-  }
-</style>
