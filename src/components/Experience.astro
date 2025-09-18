@@ -12,12 +12,9 @@ const { experience } = Astro.props;
 <Section text="Work Experience" href="experience">
   {experience.map(({ company, position, startDate, endDate, summary }) => (
     <div class="flex items-start p-4 mb-8 rounded-xl bg-gray-900/80 shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-[1.01] duration-300">
-      
-      <!-- Logo wrapper, 75% of previous size -->
-      <div class="w-20 h-20 flex-none relative mr-8">
-        <!-- Consistent white circular background -->
-        <div class="absolute inset-0 bg-white rounded-full"></div>
-        <!-- Logo image -->
+
+      <!-- Logo wrapper -->
+      <div class="w-20 h-20 flex-none relative mr-2 overflow-hidden rounded-full bg-white p-2">
         <img
           src={`/${
             company === "Raytheon"
@@ -35,8 +32,8 @@ const { experience } = Astro.props;
         />
       </div>
 
-      <!-- Text content squeezed back -->
-      <div class="ml-8">
+      <!-- Text content pushed closer to the logo -->
+      <div class="ml-2">
         <h3 class="mb-1 font-serif text-lg font-semibold text-white">{company}</h3>
         <div class="flex flex-col items-start pb-2">
           <h4 class="mb-0.5 font-serif text-base font-medium text-primary">{position}</h4>
@@ -60,6 +57,4 @@ const { experience } = Astro.props;
     </div>
   ))}
 </Section>
-
-
 
