@@ -13,8 +13,11 @@ const { experience } = Astro.props;
   {experience.map(({ company, position, startDate, endDate, summary }) => (
     <div class="flex items-start p-4 mb-8 rounded-xl bg-gray-900/80 shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-[1.01] duration-300">
       
-      <!-- Circular wrapper, object-cover forces perfect circle -->
-      <div class="w-28 h-28 rounded-full bg-white flex items-center justify-center overflow-hidden mr-6">
+      <!-- Logo wrapper -->
+      <div class="w-28 h-28 flex-none relative mr-12">
+        <!-- White circular background -->
+        <div class="absolute inset-0 bg-white rounded-full"></div>
+        <!-- Logo image -->
         <img
           src={`/${
             company === "Raytheon"
@@ -28,22 +31,16 @@ const { experience } = Astro.props;
               : ""
           }`}
           alt={company}
-          class="w-full h-full object-cover"
+          class="relative w-full h-full object-contain block"
         />
       </div>
 
-      <!-- Text content -->
-      <div>
-        <h3 class="mb-1 font-serif text-xl font-semibold text-white">
-          {company}
-        </h3>
+      <!-- Text content pushed far to the right -->
+      <div class="ml-24">
+        <h3 class="mb-1 font-serif text-xl font-semibold text-white">{company}</h3>
         <div class="flex flex-col items-start pb-3">
-          <h4 class="mb-0.5 font-serif text-lg font-medium text-primary">
-            {position}
-          </h4>
-          <span class="pb-[2px] text-xs text-white/70">
-            {startDate} — {endDate}
-          </span>
+          <h4 class="mb-0.5 font-serif text-lg font-medium text-primary">{position}</h4>
+          <span class="pb-[2px] text-xs text-white/70">{startDate} — {endDate}</span>
         </div>
 
         {Array.isArray(summary) ? (
@@ -59,6 +56,7 @@ const { experience } = Astro.props;
           <p class="text-sm text-neutral">{summary}</p>
         )}
       </div>
+
     </div>
   ))}
 </Section>
