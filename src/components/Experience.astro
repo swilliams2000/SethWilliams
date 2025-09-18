@@ -3,9 +3,11 @@ import Section from "./Section.astro";
 import type { ExperienceProps } from "@types";
 import { experience } from "../data/global";
 ---
+
 <Section text="Work Experience" href="experience">
   {experience.map((job) => (
     <div class="flex items-start p-6 mb-10 rounded-xl bg-gray-900/80 shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-[1.01] duration-300">
+      
       <!-- Company logo -->
       <img
         src={`/images/${
@@ -31,11 +33,12 @@ import { experience } from "../data/global";
         <p class="text-sm text-gray-400 mb-2">
           {job.startDate} – {job.endDate}
         </p>
+
         {Array.isArray(job.summary) ? (
           <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
-            {job.summary.map((point) => (
-              <li set:html={point} />
-            ))}
+            {job.summary.map((point) => {
+              return <li set:html={point}></li>;
+            })}
           </ul>
         ) : (
           <p class="text-base text-neutral">{job.summary}</p>
