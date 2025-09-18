@@ -13,8 +13,8 @@ const { experience } = Astro.props;
   {experience.map(({ company, position, startDate, endDate, summary }) => (
     <div class="flex items-start p-4 mb-8 rounded-xl bg-gray-900/80 shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 hover:scale-[1.01] duration-300">
       
-      <!-- Company logo with perfect circular white background -->
-      <div class="bg-white rounded-full flex items-center justify-center mr-6 w-16 h-16">
+      <!-- Perfect circular white background for logo -->
+      <div class="bg-white rounded-full flex items-center justify-center mr-6 w-20 h-20 p-2">
         <img
           src={`/${
             company === "Raytheon"
@@ -28,7 +28,7 @@ const { experience } = Astro.props;
               : ""
           }`}
           alt={company}
-          class="w-12 h-12 object-contain"
+          class="w-full h-full object-contain"
         />
       </div>
 
