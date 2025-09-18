@@ -2,36 +2,46 @@
 import type { HeroProps } from "@types";
 type Props = HeroProps;
 
-const { name, specialty, summary, email } = Astro.props;
+const { name, specialty, summary, email, resumeUrl } = Astro.props;
 ---
 
-<section class="w-full h-screen flex flex-col justify-center items-center bg-gray-900 text-white" id="hero">
+<section class="w-full min-h-screen flex flex-col justify-center items-center text-white" id="hero">
   <!-- Typing animation -->
-  <h1 class="text-6xl md:text-8xl font-bold font-serif mb-6 text-center">
+  <h1 class="text-6xl md:text-7xl font-bold font-serif mb-6 text-center">
     <span id="typed-text"></span><span class="blinking-cursor">|</span>
   </h1>
 
   <!-- Specialty -->
-  <p class="mb-9 font-serif text-3xl leading-snug font-bold tracking-tighter text-primary text-center sm:text-4xl md:text-5xl">
+  <p class="mb-6 font-serif text-3xl leading-snug font-bold tracking-tighter text-primary text-center sm:text-4xl md:text-5xl">
     {specialty}
   </p>
 
   <!-- Summary -->
-  <p class="mb-16 text-base font-normal text-neutral text-center md:text-lg">
+  <p class="mb-10 text-base font-normal text-neutral text-center md:text-lg max-w-2xl">
     {summary}
   </p>
 
-  <!-- Contact button -->
-  <a
-    class="inline-block rounded-full bg-primary px-8 py-5 text-sm leading-5 font-medium text-[#fff]"
-    href={`mailto:${email}`}
-  >
-    Get in Touch
-  </a>
+  <!-- Buttons -->
+  <div class="flex gap-4">
+    <a
+      class="inline-block rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition"
+      href={`mailto:${email}`}
+    >
+      Get in Touch
+    </a>
+
+    <a
+      class="inline-block rounded-full border border-white px-6 py-3 text-sm font-medium text-white hover:bg-white hover:text-gray-900 transition"
+      href={resumeUrl}
+      download
+    >
+      Download Resume
+    </a>
+  </div>
 </section>
 
 <script type="module">
-  const text = `Howdy, I'm ${name}!`;
+  const text = "Howdy, Seth here";
   const typedText = document.getElementById("typed-text");
   const cursor = document.querySelector(".blinking-cursor");
   let index = 0;
@@ -60,4 +70,3 @@ const { name, specialty, summary, email } = Astro.props;
     50% { opacity: 0; }
   }
 </style>
-
