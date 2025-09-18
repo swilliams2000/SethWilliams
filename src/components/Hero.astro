@@ -7,20 +7,27 @@
 
   function type() {
     if (part < textParts.length) {
-      typedText.innerHTML =
-        textParts
-          .slice(0, part)
-          .map((t, i) =>
-            i === 1
-              ? `<span class="glow-text">${t}</span>`
-              : t
-          )
-          .join("") + textParts[part].slice(0, subIndex);
+      // Build typed content so far
+      let typedSoFar = "";
+      for (let i = 0; i < part; i++) {
+        if (i === 1) {
+          typedSoFar += `<span class="glow-text">${textParts[i]}</span>`;
+        } else {
+          typedSoFar += textParts[i];
+        }
+      }
+
+      // Append current character of current part
+      let currentChar = textParts[part].slice(0, subIndex + 1);
+      if (part === 1) currentChar = `<span class="glow-text">${currentChar}</span>`;
+      typedText.innerHTML = typedSoFar + currentChar;
+
       subIndex++;
-      if (subIndex > textParts[part].length) {
+      if (subIndex >= textParts[part].length) {
         subIndex = 0;
         part++;
       }
+
       setTimeout(type, 120);
     } else {
       cursor.classList.add("blink");
@@ -52,7 +59,7 @@
     display: inline-block;
     color: #fff;
     animation: glow-pulse 2s ease-in-out infinite;
-    text-shadow: 0 0 4px #facc15; /* initial subtle yellow */
+    text-shadow: 0 0 4px #facc15;
   }
 
   @keyframes glow-pulse {
@@ -64,4 +71,5 @@
     }
   }
 </style>
+
 
