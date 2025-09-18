@@ -1,105 +1,103 @@
 ---
-// Header.astro
-import type { HeaderProps } from "@types";
 import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
+import type { HeaderProps } from "@types";
 
+type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-4 max-w-5xl mx-auto">
-  <!-- Left: logo + nav -->
-  <div class="flex items-center gap-6">
-    <a href="/" aria-label="Home link">
-      <Image src={siteLogo} width="45" height="45" alt="website logo" class="rounded-full"/>
-    </a>
+<header class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6">
+  <a href="/" aria-label="Home link">
+    <Image
+      class="rounded-full"
+      src={siteLogo}
+      width="45"
+      height="45"
+      alt="website logo"
+    />
+  </a>
 
-    <nav class="hidden sm:block">
-      <ul class="flex gap-6">
-        {navLinks.map((link) => (
-          <li class="relative">
-            <a
-              href={link.href}
-              class="text-neutral hover:text-white text-sm font-medium relative after:absolute after:bottom-0 after:left-1/2 after:w-1 after:h-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100 transition-colors duration-300"
-            >
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
-
-  <!-- Right: social icons -->
-  <div class="hidden sm:flex gap-4">
-    <!-- Email -->
-    <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-        <path d="M2 4v16h20V4H2zm18 2v.511l-8 5-8-5V6h16zM4 18V8.489l7.446 4.654a1 1 0 0 0 1.108 0L20 8.489V18H4z"/>
-      </svg>
-    </a>
-
-    <!-- GitHub -->
-    <a href="https://github.com/swilliams2000" target="_blank" rel="noopener" class="text-neutral hover:text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.335-5.467-5.933 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3-.404 11.52 11.52 0 0 1 3 .404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .319.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-      </svg>
-    </a>
-
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener" class="text-neutral hover:text-white transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-        <path d="M4.98 3.5c0 1.381-1.115 2.5-2.49 2.5C1.116 6 0 4.881 0 3.5 0 2.119 1.116 1 2.49 1c1.375 0 2.49 1.119 2.49 2.5zM0 8.998h4.978v15H0v-15zm7.496 0h4.772v2.055h.068c.664-1.258 2.285-2.585 4.7-2.585 5.025 0 5.956 3.308 5.956 7.604v8.926h-4.978v-7.922c0-1.888-.034-4.316-2.625-4.316-2.629 0-3.031 2.053-3.031 4.178v8.06H7.496v-15z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Mobile menu button -->
-  <button id="menu-button" class="sm:hidden px-2 text-neutral" aria-expanded="false" aria-controls="mobile-menu">
+  <button
+    type="button"
+    id="menu-button"
+    class="px-1.5 text-neutral sm:hidden"
+    aria-expanded="false"
+    aria-controls="main-menu"
+  >
     <Menu />
   </button>
-</header>
 
-<!-- Mobile menu -->
-<nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 bg-black p-4 rounded-xl border border-neutral/40">
-  <ul class="flex flex-col gap-3">
-    {navLinks.map((link) => (
-      <li>
-        <a href={link.href} class="text-neutral hover:text-white">{link.text}</a>
-      </li>
-    ))}
-    <li class="flex gap-3 mt-2">
-      <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-          <path d="M2 4v16h20V4H2zm18 2v.511l-8 5-8-5V6h16zM4 18V8.489l7.446 4.654a1 1 0 0 0 1.108 0L20 8.489V18H4z"/>
-        </svg>
-      </a>
-      <a href="https://github.com/swilliams2000" target="_blank" rel="noopener" class="text-neutral hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.467-1.335-5.467-5.933 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 0 1 3-.404 11.52 11.52 0 0 1 3 .404c2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.922.43.37.823 1.102.823 2.222 0 1.606-.015 2.903-.015 3.293 0 .319.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener" class="text-neutral hover:text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-          <path d="M4.98 3.5c0 1.381-1.115 2.5-2.49 2.5C1.116 6 0 4.881 0 3.5 0 2.119 1.116 1 2.49 1c1.375 0 2.49 1.119 2.49 2.5zM0 8.998h4.978v15H0v-15zm7.496 0h4.772v2.055h.068c.664-1.258 2.285-2.585 4.7-2.585 5.025 0 5.956 3.308 5.956 7.604v8.926h-4.978v-7.922c0-1.888-.034-4.316-2.625-4.316-2.629 0-3.031 2.053-3.031 4.178v8.06H7.496v-15z"/>
-        </svg>
-      </a>
-    </li>
-  </ul>
-</nav>
+  <nav
+    class="absolute top-20 right-5 hidden rounded-xl border border-neutral/40 bg-black px-4 py-5 text-neutral sm:static sm:block sm:border-0 sm:bg-transparent sm:p-0"
+    id="main-menu"
+  >
+    <ul class="gap-2 sm:flex">
+      {navLinks.map((link) => (
+        <li class="relative">
+          <a
+            class="nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white"
+            href={link.href}
+          >
+            {link.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
 
 <script>
   // Mobile menu toggle
-  const menuButton = document.getElementById("menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
+  const button = document.querySelector("#menu-button");
+  const menu = document.querySelector("#main-menu");
+  const navItems = document.querySelectorAll("#main-menu > ul > li > a");
 
-  menuButton?.addEventListener("click", () => {
-    if (mobileMenu) {
-      const isHidden = mobileMenu.classList.toggle("hidden");
-      menuButton.setAttribute("aria-expanded", String(!isHidden));
-    }
-  });
+  const toggleMenu = () => {
+    menu?.classList.toggle("hidden");
+    const isHidden = menu?.classList.contains("hidden");
+    button?.setAttribute("aria-expanded", `${!isHidden}`);
+  };
+
+  button?.addEventListener("click", toggleMenu);
+  navItems.forEach((item) => item?.addEventListener("click", toggleMenu));
+
+  // Intersection Observer to update active nav dot
+  const observerOptions = {
+    root: null,
+    rootMargin: "-50% 0px -50% 0px", // triggers when section crosses middle of viewport
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const id = entry.target.id;
+      navItems.forEach((item) => {
+        const href = item.getAttribute("href")?.replace("#", "");
+        if (href === id && entry.isIntersecting) {
+          item.classList.add("text-white", "md:after:opacity-100");
+        } else {
+          item.classList.remove("text-white", "md:after:opacity-100");
+        }
+      });
+    });
+  }, observerOptions);
+
+  document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+
+  // Reconnect observer when tab is visible
+  document.onvisibilitychange = () => {
+    if (document.visibilityState === "hidden") observer.disconnect();
+    else document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+  };
 </script>
+
+<style>
+  header {
+    animation-timeline: scroll();
+    animation-range: 0 650px;
+  }
+</style>
 
 
 
