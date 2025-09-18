@@ -10,10 +10,7 @@ const resumeUrl = "#";
 <section class="w-full min-h-screen flex flex-col justify-center items-center text-white" id="hero">
   <!-- Typing animation -->
   <h1 class="text-6xl md:text-7xl font-bold font-serif mb-6 text-center">
-    <span id="typed-before"></span>
-    <span class="glow-text" id="typed-name">Seth</span>
-    <span id="typed-after"></span>
-    <span class="blinking-cursor">|</span>
+    <span id="typed-text"></span><span class="blinking-cursor">|</span>
   </h1>
 
   <!-- Animated content container -->
@@ -49,40 +46,30 @@ const resumeUrl = "#";
 </section>
 
 <script type="module">
-  const typedBefore = document.getElementById("typed-before");
-  const typedAfter = document.getElementById("typed-after");
+  const typedText = document.getElementById("typed-text");
   const cursor = document.querySelector(".blinking-cursor");
+  const fullText = "howdy, Seth here.";
+  let index = 0;
 
-  const fullBefore = "howdy, ";
-  const fullAfter = " here.";
-
-  let beforeIndex = 0;
-  let afterIndex = 0;
-
-  function typeBefore() {
-    if (beforeIndex < fullBefore.length) {
-      typedBefore.textContent += fullBefore[beforeIndex];
-      beforeIndex++;
-      setTimeout(typeBefore, 120);
-    } else {
-      typeAfter();
-    }
-  }
-
-  function typeAfter() {
-    if (afterIndex < fullAfter.length) {
-      typedAfter.textContent += fullAfter[afterIndex];
-      afterIndex++;
-      setTimeout(typeAfter, 120);
+  function type() {
+    if (index < fullText.length) {
+      typedText.textContent += fullText[index];
+      index++;
+      setTimeout(type, 120);
     } else {
       cursor.classList.add("blink");
       document.querySelector('.animate-fade-in').classList.add('opacity-100');
+
+      // Apply glow to "Seth" after typing
+      typedText.innerHTML = typedText.textContent.replace(
+        "Seth",
+        '<span class="glow-text">Seth</span>'
+      );
     }
   }
 
-  typedBefore.textContent = "";
-  typedAfter.textContent = "";
-  typeBefore();
+  typedText.textContent = "";
+  type();
 </script>
 
 <style>
@@ -100,7 +87,7 @@ const resumeUrl = "#";
     transition: opacity 1s ease-in-out;
   }
 
-  /* Glow + gradient pulse for "Seth" */
+  /* Glow + subtle shine/pulse effect */
   .glow-text {
     display: inline-block;
     font-weight: bold;
