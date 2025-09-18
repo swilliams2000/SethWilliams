@@ -1,5 +1,4 @@
 ---
-// Header.astro
 import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
 import type { HeaderProps } from "@types";
@@ -37,9 +36,7 @@ const { siteLogo, navLinks } = Astro.props;
       {navLinks.map((link) => (
         <li class="relative">
           <a
-            class={`nav-item relative block p-2 text-sm font-medium transition-all duration-500
-              after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4
-              after:text-primary after:opacity-0 after:content-['•'] hover:text-white`}
+            class="nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white"
             href={link.href}
           >
             {link.text}
@@ -51,7 +48,7 @@ const { siteLogo, navLinks } = Astro.props;
 </header>
 
 <script>
-  // Toggle mobile menu
+  // Mobile menu toggle
   const button = document.querySelector("#menu-button");
   const menu = document.querySelector("#main-menu");
   const navItems = document.querySelectorAll("#main-menu > ul > li > a");
@@ -63,15 +60,13 @@ const { siteLogo, navLinks } = Astro.props;
   };
 
   button?.addEventListener("click", toggleMenu);
-  navItems.forEach((item) => {
-    item?.addEventListener("click", toggleMenu);
-  });
+  navItems.forEach((item) => item?.addEventListener("click", toggleMenu));
 
-  // Intersection Observer for active nav dot
+  // Intersection Observer to update active nav dot
   const observerOptions = {
     root: null,
-    rootMargin: "-100px 0px -50% 0px", // adjust for sticky header
-    threshold: 0.25,
+    rootMargin: "-50% 0px -50% 0px", // triggers when section crosses middle of viewport
+    threshold: 0,
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -90,12 +85,16 @@ const { siteLogo, navLinks } = Astro.props;
 
   document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
 
-  // Re-observe on visibility change
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
-    } else {
-      observer.disconnect();
-    }
-  });
+  // Reconnect observer when tab is visible
+  document.onvisibilitychange = () => {
+    if (document.visibilityState === "hidden") observer.disconnect();
+    else document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
+  };
 </script>
+
+<style>
+  header {
+    animation-timeline: scroll();
+    animation-range: 0 650px;
+  }
+</style>
