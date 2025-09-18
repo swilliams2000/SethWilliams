@@ -7,94 +7,77 @@ type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6">
-  <a href="/" aria-label="Home link">
-    <Image
-      class="rounded-full"
-      src={siteLogo}
-      width="45"
-      height="45"
-      alt="website logo"
-    />
-  </a>
+<header class="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-4 max-w-5xl mx-auto">
+  <!-- Left side: logo + navigation -->
+  <div class="flex items-center gap-6">
+    <!-- Logo -->
+    <a href="/" aria-label="Home link">
+      <Image src={siteLogo} width="45" height="45" alt="website logo" class="rounded-full"/>
+    </a>
 
-  <button
-    type="button"
-    id="menu-button"
-    class="px-1.5 text-neutral sm:hidden"
-    aria-expanded="false"
-    aria-controls="main-menu"
-  >
-    <Menu />
-  </button>
+    <!-- Navigation -->
+    <nav>
+      <ul class="flex gap-4">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-neutral transition-colors hover:text-white font-medium text-sm relative after:absolute after:bottom-0 after:left-1/2 after:w-1 after:h-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100"
+            >
+              {link.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 
-  <nav
-    class="absolute top-20 right-5 hidden rounded-xl border border-neutral/40 bg-black px-4 py-5 text-neutral sm:static sm:block sm:border-0 sm:bg-transparent sm:p-0"
-    id="main-menu"
-  >
-    <ul class="gap-2 sm:flex">
-      {navLinks.map((link) => (
-        <li class="relative">
-          <a
-            class="nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white"
-            href={link.href}
-          >
-            {link.text}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <!-- Right side: social icons -->
+  <div class="flex gap-4">
+    <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white transition-colors">
+      <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
+    </a>
+    <a href="https://github.com/swilliams2000" target="_blank" rel="noopener noreferrer" class="text-neutral hover:text-white transition-colors">
+      <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
+    </a>
+    <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener noreferrer" class="text-neutral hover:text-white transition-colors">
+      <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
+    </a>
+  </div>
 </header>
+
+<!-- Optional mobile menu button -->
+<button
+  id="menu-button"
+  class="sm:hidden px-2 text-neutral"
+  aria-expanded="false"
+  aria-controls="mobile-menu"
+>
+  <Menu />
+</button>
+
+<nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 bg-black p-4 rounded-xl border border-neutral/40">
+  <ul class="flex flex-col gap-3">
+    {navLinks.map((link) => (
+      <li>
+        <a href={link.href} class="text-neutral hover:text-white">{link.text}</a>
+      </li>
+    ))}
+    <li class="flex gap-3 mt-2">
+      <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white"><img src="/Email.svg" alt="Email" class="w-5 h-5"/></a>
+      <a href="https://github.com/swilliams2000" target="_blank" rel="noopener noreferrer" class="text-neutral hover:text-white"><img src="/Github.svg" alt="GitHub" class="w-5 h-5"/></a>
+      <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank" rel="noopener noreferrer" class="text-neutral hover:text-white"><img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/></a>
+    </li>
+  </ul>
+</nav>
 
 <script>
   // Mobile menu toggle
-  const button = document.querySelector("#menu-button");
-  const menu = document.querySelector("#main-menu");
-  const navItems = document.querySelectorAll("#main-menu > ul > li > a");
-
-  const toggleMenu = () => {
-    menu?.classList.toggle("hidden");
-    const isHidden = menu?.classList.contains("hidden");
-    button?.setAttribute("aria-expanded", `${!isHidden}`);
-  };
-
-  button?.addEventListener("click", toggleMenu);
-  navItems.forEach((item) => item?.addEventListener("click", toggleMenu));
-
-  // Intersection Observer to update active nav dot
-  const observerOptions = {
-    root: null,
-    rootMargin: "-50% 0px -50% 0px", // triggers when section crosses middle of viewport
-    threshold: 0,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.id;
-      navItems.forEach((item) => {
-        const href = item.getAttribute("href")?.replace("#", "");
-        if (href === id && entry.isIntersecting) {
-          item.classList.add("text-white", "md:after:opacity-100");
-        } else {
-          item.classList.remove("text-white", "md:after:opacity-100");
-        }
-      });
-    });
-  }, observerOptions);
-
-  document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
-
-  // Reconnect observer when tab is visible
-  document.onvisibilitychange = () => {
-    if (document.visibilityState === "hidden") observer.disconnect();
-    else document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
-  };
+  const menuButton = document.getElementById("menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  menuButton?.addEventListener("click", () => {
+    const isHidden = mobileMenu.classList.toggle("hidden");
+    menuButton.setAttribute("aria-expanded", String(!isHidden));
+  });
 </script>
 
-<style>
-  header {
-    animation-timeline: scroll();
-    animation-range: 0 650px;
-  }
-</style>
