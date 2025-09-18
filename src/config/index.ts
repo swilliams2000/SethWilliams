@@ -8,9 +8,9 @@ export const SITE_CONFIG: SiteConfig = {
   lang: "en",
   siteLogo: "/Seth-Small.jpg",
   navLinks: [
+    { text: "About", href: "#about" },
     { text: "Experience", href: "#experience" },
     { text: "Projects", href: "#projects" },
-    { text: "About", href: "#about" },
   ],
   socialLinks: [
     { text: "LinkedIn", href: "https://www.linkedin.com/in/seth-m-williams/" },
@@ -58,8 +58,8 @@ export const SITE_CONTENT: SiteContent = {
     {
       company: "Mars",
       position: "Data Science Intern",
-      startDate: "Feb 2017",
-      endDate: "May 2018",
+      startDate: "May 2022",
+      endDate: "August 2022",
       summary: [
         "Designed Python-based <strong>data pipelines</strong> to clean and process sensor data from high-speed packaging lines, handling over <strong>2 million data points per week</strong>.",
       "Applied <strong>machine learning models</strong> to predict scrap rates, reducing material waste by <strong>12%</strong> on targeted lines.",
@@ -70,8 +70,8 @@ export const SITE_CONTENT: SiteContent = {
     {
       company: "Raytheon",
       position: "Software Engineer Intern",
-      startDate: "Jun 2015",
-      endDate: "Oct 2016",
+      startDate: "May 2021",
+      endDate: "August 2021",
       summary:[
        "Developed <strong>C# and .NET applications</strong> to automate report generation, saving engineers <strong>10+ hours weekly</strong> on manual reporting.",
       "Built a <strong>web-based dashboard (React + Node)</strong> to visualize real-time metrics from test equipment, improving engineer accessibility and reducing issue detection time by <strong>25%</strong>.",
