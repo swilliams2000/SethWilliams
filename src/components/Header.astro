@@ -8,14 +8,11 @@ const { siteLogo, navLinks } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-4 max-w-5xl mx-auto">
-  <!-- Left side: logo + navigation -->
+  <!-- Left side: Logo + nav -->
   <div class="flex items-center gap-6">
-    <!-- Logo -->
     <a href="/" aria-label="Home link">
       <Image src={siteLogo} width="45" height="45" alt="website logo" class="rounded-full"/>
     </a>
-
-    <!-- Navigation -->
     <nav class="hidden sm:block">
       <ul class="flex gap-4">
         {navLinks.map((link) => (
@@ -34,24 +31,19 @@ const { siteLogo, navLinks } = Astro.props;
 
   <!-- Right side: social icons -->
   <div class="hidden sm:flex gap-4">
-    <a href="mailto:youremail@example.com" class="text-neutral hover:text-white transition-colors">
+    <a href="" class="text-neutral hover:text-white transition-colors">
       <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
     </a>
-    <a href="https://github.com/yourusername" target="_blank" class="text-neutral hover:text-white transition-colors">
+    <a href="" class="text-neutral hover:text-white transition-colors">
       <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
     </a>
-    <a href="https://www.linkedin.com/in/yourlinkedin/" target="_blank" class="text-neutral hover:text-white transition-colors">
+    <a href="" class="text-neutral hover:text-white transition-colors">
       <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
     </a>
   </div>
 
   <!-- Mobile menu button -->
-  <button
-    id="menu-button"
-    class="sm:hidden px-2 text-neutral"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
-  >
+  <button id="menu-button" class="sm:hidden px-2 text-neutral" aria-expanded="false" aria-controls="mobile-menu">
     <Menu />
   </button>
 </header>
@@ -65,33 +57,43 @@ const { siteLogo, navLinks } = Astro.props;
       </li>
     ))}
     <li class="flex gap-3 mt-2">
-      <a href="mailto:youremail@example.com" class="text-neutral hover:text-white"><img src="/Email.svg" alt="Email" class="w-5 h-5"/></a>
-      <a href="https://github.com/yourusername" class="text-neutral hover:text-white"><img src="/Github.svg" alt="GitHub" class="w-5 h-5"/></a>
-      <a href="https://www.linkedin.com/in/yourlinkedin/" class="text-neutral hover:text-white"><img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/></a>
+      <a href="" class="text-neutral hover:text-white"><img src="/Email.svg" alt="Email" class="w-5 h-5"/></a>
+      <a href="" class="text-neutral hover:text-white"><img src="/Github.svg" alt="GitHub" class="w-5 h-5"/></a>
+      <a href="" class="text-neutral hover:text-white"><img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/></a>
     </li>
   </ul>
 </nav>
 
 <script lang="ts">
+  // Mobile toggle
   const menuButton = document.getElementById("menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
-
-  if (menuButton) {
+  if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
-      if (!mobileMenu) return;
       const isHidden = mobileMenu.classList.toggle("hidden");
       menuButton.setAttribute("aria-expanded", String(!isHidden));
     });
   }
 
-  // Close mobile menu when clicking a link
-  const mobileLinks = mobileMenu?.querySelectorAll("a");
-  mobileLinks?.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (!mobileMenu || !menuButton) return;
-      mobileMenu.classList.add("hidden");
-      menuButton.setAttribute("aria-expanded", "false");
+  // Scroll-tracking dot indicator
+  const navItems = document.querySelectorAll('header nav ul li a');
+  const sections = document.querySelectorAll('section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      navItems.forEach(item => {
+        const href = item.getAttribute('href') ?? '';
+        if (href === `#${entry.target.id}` && entry.isIntersecting) {
+          item.classList.add('text-white');
+          item.classList.add('after:opacity-100');
+        } else {
+          item.classList.remove('text-white');
+          item.classList.remove('after:opacity-100');
+        }
+      });
     });
-  });
+  }, { threshold: 0.6 });
+
+  sections.forEach(section => observer.observe(section));
 </script>
+
 
