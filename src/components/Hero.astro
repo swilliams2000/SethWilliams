@@ -3,8 +3,8 @@ import type { HeroProps } from "@types";
 type Props = HeroProps;
 
 const { name, specialty, summary, email } = Astro.props;
-// You can set your resume URL here once ready
-const resumeUrl = "#"; 
+// Placeholder for resume link
+const resumeUrl = "#";
 ---
 
 <section class="w-full min-h-screen flex flex-col justify-center items-center text-white" id="hero">
@@ -46,20 +46,31 @@ const resumeUrl = "#";
 </section>
 
 <script type="module">
-  const text = "howdy, Seth here.";
   const typedText = document.getElementById("typed-text");
   const cursor = document.querySelector(".blinking-cursor");
-  let index = 0;
+  const textParts = ["howdy, ", "Seth", " here."];
+  let part = 0;
+  let subIndex = 0;
 
   function type() {
-    if (index <= text.length) {
-      typedText.textContent = text.slice(0, index);
-      index++;
+    if (part < textParts.length) {
+      typedText.innerHTML =
+        textParts
+          .slice(0, part)
+          .map((t, i) =>
+            i === 1
+              ? `<span class="glow-text text-7xl md:text-8xl font-extrabold">${t}</span>`
+              : t
+          )
+          .join("") + textParts[part].slice(0, subIndex);
+      subIndex++;
+      if (subIndex > textParts[part].length) {
+        subIndex = 0;
+        part++;
+      }
       setTimeout(type, 120);
     } else {
       cursor.classList.add("blink");
-
-      // Trigger fade-in after typing completes
       document.querySelector('.animate-fade-in').classList.add('opacity-100');
     }
   }
@@ -78,8 +89,39 @@ const resumeUrl = "#";
     50% { opacity: 0; }
   }
 
-  /* Fade-in animation */
+  /* Fade-in for the rest of the hero content */
   .animate-fade-in {
     transition: opacity 1s ease-in-out;
   }
+
+  /* Glow effect for "Seth" */
+  .glow-text {
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    text-shadow:
+      0 0 8px #fff,
+      0 0 16px #8b5cf6,
+      0 0 24px #8b5cf6,
+      0 0 32px #8b5cf6;
+    animation: glow-shine 2.5s ease-in-out infinite;
+  }
+
+  @keyframes glow-shine {
+    0%, 100% {
+      text-shadow:
+        0 0 6px #fff,
+        0 0 12px #8b5cf6,
+        0 0 18px #8b5cf6,
+        0 0 24px #8b5cf6;
+    }
+    50% {
+      text-shadow:
+        0 0 10px #fff,
+        0 0 20px #a78bfa,
+        0 0 30px #a78bfa,
+        0 0 40px #a78bfa;
+    }
+  }
 </style>
+
