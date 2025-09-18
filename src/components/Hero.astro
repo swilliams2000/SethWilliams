@@ -5,23 +5,59 @@ type Props = HeroProps;
 const { name, specialty, summary, email } = Astro.props;
 ---
 
-<section class="py-24 md:py-32" id="#hero">
-  <h1
-    class="mb-1.5 font-serif text-7xl font-bold tracking-tightest text-white sm:text-8xl md:mb-0 md:text-9xl"
-  >
-    {name}
+<section class="w-full h-screen flex flex-col justify-center items-center bg-gray-900 text-white" id="hero">
+  <!-- Typing animation -->
+  <h1 class="text-6xl md:text-8xl font-bold font-serif mb-6 text-center">
+    <span id="typed-text"></span><span class="blinking-cursor">|</span>
   </h1>
-  <p
-    class="mb-9 font-serif text-4xl leading-[46px] font-bold tracking-tighter text-primary sm:text-5xl md:text-6xl"
-  >
+
+  <!-- Specialty -->
+  <p class="mb-9 font-serif text-3xl leading-snug font-bold tracking-tighter text-primary text-center sm:text-4xl md:text-5xl">
     {specialty}
   </p>
-  <p class="mb-16 text-base font-normal text-neutral md:text-lg">
+
+  <!-- Summary -->
+  <p class="mb-16 text-base font-normal text-neutral text-center md:text-lg">
     {summary}
   </p>
 
+  <!-- Contact button -->
   <a
     class="inline-block rounded-full bg-primary px-8 py-5 text-sm leading-5 font-medium text-[#fff]"
-    href={`mailto:${email}`}>Get in Touch</a
+    href={`mailto:${email}`}
   >
+    Get in Touch
+  </a>
 </section>
+
+<script type="module">
+  const text = `Howdy, I'm ${name}!`;
+  const typedText = document.getElementById("typed-text");
+  const cursor = document.querySelector(".blinking-cursor");
+  let index = 0;
+
+  function type() {
+    if (index <= text.length) {
+      typedText.textContent = text.slice(0, index);
+      index++;
+      setTimeout(type, 120);
+    } else {
+      cursor.classList.add("blink");
+    }
+  }
+
+  type();
+</script>
+
+<style>
+  .blinking-cursor {
+    display: inline-block;
+    width: 1ch;
+    animation: blink 1s step-start infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+
