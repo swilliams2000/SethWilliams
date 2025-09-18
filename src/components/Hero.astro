@@ -54,7 +54,6 @@ const resumeUrl = "#";
 
   function type() {
     if (part < textParts.length) {
-      // Build typed content so far
       let typedSoFar = "";
       for (let i = 0; i < part; i++) {
         typedSoFar += i === 1
@@ -62,7 +61,6 @@ const resumeUrl = "#";
           : textParts[i];
       }
 
-      // Append current character
       let currentChar = textParts[part].slice(0, subIndex + 1);
       if (part === 1) currentChar = `<span class="glow-text">${currentChar}</span>`;
       typedText.innerHTML = typedSoFar + currentChar;
@@ -97,28 +95,27 @@ const resumeUrl = "#";
     transition: opacity 1s ease-in-out;
   }
 
-  /* Subtle yellow glow for "Seth" */
+  /* Gradient shine + subtle scale pulse for "Seth" */
   .glow-text {
     display: inline-block;
-    color: #fff;
-    animation: glow-pulse 2s ease-in-out infinite;
-    text-shadow:
-      0 0 4px #facc15,
-      0 0 8px #facc15;
+    font-weight: bold;
+    background: linear-gradient(90deg, #facc15, #fff, #facc15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 2s linear infinite, pulse 1.5s ease-in-out infinite;
   }
 
-  @keyframes glow-pulse {
-    0%, 100% {
-      text-shadow:
-        0 0 4px #facc15,
-        0 0 8px #facc15;
-    }
-    50% {
-      text-shadow:
-        0 0 8px #facc15,
-        0 0 16px #facc15;
-    }
+  @keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
   }
 </style>
+
 
 
