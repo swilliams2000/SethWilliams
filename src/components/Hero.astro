@@ -3,7 +3,8 @@ import type { HeroProps } from "@types";
 type Props = HeroProps;
 
 const { name, specialty, summary, email } = Astro.props;
-// const resumeUrl = ""; // placeholder for later
+// You can set your resume URL here once ready
+const resumeUrl = "#"; 
 ---
 
 <section class="w-full min-h-screen flex flex-col justify-center items-center text-white" id="hero">
@@ -12,38 +13,40 @@ const { name, specialty, summary, email } = Astro.props;
     <span id="typed-text"></span><span class="blinking-cursor">|</span>
   </h1>
 
-  <!-- Specialty -->
-  <p class="mb-6 font-serif text-3xl leading-snug font-bold tracking-tighter text-primary text-center sm:text-4xl md:text-5xl">
-    {specialty}
-  </p>
+  <!-- Animated content container -->
+  <div class="flex flex-col items-center opacity-0 animate-fade-in delay-700">
+    <!-- Specialty -->
+    <p class="mb-6 font-serif text-3xl leading-snug font-bold tracking-tighter text-primary text-center sm:text-4xl md:text-5xl">
+      {specialty}
+    </p>
 
-  <!-- Summary -->
-  <p class="mb-10 text-base font-normal text-neutral text-center md:text-lg max-w-2xl">
-    {summary}
-  </p>
+    <!-- Summary -->
+    <p class="mb-10 text-base font-normal text-neutral text-center md:text-lg max-w-2xl">
+      {summary}
+    </p>
 
-  <!-- Buttons -->
-  <div class="flex gap-4">
-    <a
-      class="inline-block rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition"
-      href={`mailto:${email}`}
-    >
-      Get in Touch
-    </a>
+    <!-- Buttons -->
+    <div class="flex gap-4">
+      <a
+        class="inline-block rounded-full bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary/90 transition"
+        href={`mailto:${email}`}
+      >
+        Get in Touch
+      </a>
 
-    <!-- Resume button placeholder -->
-    <!-- <a
-      class="inline-block rounded-full border border-white px-6 py-3 text-sm font-medium text-white hover:bg-white hover:text-gray-900 transition"
-      href={resumeUrl}
-      download
-    >
-      Download Resume
-    </a> -->
+      <a
+        class="inline-block rounded-full border border-white px-6 py-3 text-sm font-medium text-white hover:bg-white hover:text-gray-900 transition"
+        href={resumeUrl}
+        download
+      >
+        My Resume
+      </a>
+    </div>
   </div>
 </section>
 
 <script type="module">
-  const text = "Howdy, Seth here";
+  const text = "howdy, Seth here.";
   const typedText = document.getElementById("typed-text");
   const cursor = document.querySelector(".blinking-cursor");
   let index = 0;
@@ -55,6 +58,9 @@ const { name, specialty, summary, email } = Astro.props;
       setTimeout(type, 120);
     } else {
       cursor.classList.add("blink");
+
+      // Trigger fade-in after typing completes
+      document.querySelector('.animate-fade-in').classList.add('opacity-100');
     }
   }
 
@@ -71,5 +77,9 @@ const { name, specialty, summary, email } = Astro.props;
   @keyframes blink {
     50% { opacity: 0; }
   }
-</style>
 
+  /* Fade-in animation */
+  .animate-fade-in {
+    transition: opacity 1s ease-in-out;
+  }
+</style>
