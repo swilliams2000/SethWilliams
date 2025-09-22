@@ -7,97 +7,43 @@ type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 mx-auto flex max-w-5xl animate-slide-in justify-between bg-black px-5 py-6">
-  <a href="/" aria-label="Home link">
-    <Image
-      class="rounded-full"
-      src={siteLogo}
-      width="45"
-      height="45"
-      alt="website logo"
-    />
-  </a>
+<header class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 max-w-5xl mx-auto bg-black">
+  <!-- Left side: Logo + Navigation -->
+  <div class="flex items-center gap-6">
+    <!-- Logo -->
+    <a href="/" aria-label="Home link">
+      <Image
+        src={siteLogo}
+        width="45"
+        height="45"
+        alt="website logo"
+        class="rounded-full"
+      />
+    </a>
 
-  <button
-    type="button"
-    id="menu-button"
-    class="px-1.5 text-neutral sm:hidden"
-    aria-expanded="false"
-    aria-controls="main-menu"
-  >
-    <Menu />
-  </button>
+    <!-- Navigation -->
+    <nav>
+      <ul class="flex gap-6">
+        {navLinks.map((link) => (
+          <li class="relative">
+            <a
+              href={link.href}
+              class="text-neutral text-sm font-medium transition-colors hover:text-white relative after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100"
+            >
+              {link.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 
-  <nav
-    class="absolute top-20 right-5 hidden rounded-xl border border-neutral/40 bg-black px-4 py-5 text-neutral sm:static sm:block sm:border-0 sm:bg-transparent sm:p-0"
-    id="main-menu"
-  >
-    <ul class="gap-2 sm:flex">
-      {navLinks.map((link) => (
-        <li class="relative">
-          <a
-            class="nav-item relative block p-2 text-sm font-medium transition-all duration-500 after:absolute after:bottom-0 after:left-2/4 after:h-2 after:w-1 after:-translate-x-2/4 after:text-primary after:opacity-0 after:content-['•'] hover:text-white"
-            href={link.href}
-          >
-            {link.text}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <!-- Right side: Social Icons (keep empty or add later) -->
+  <div class="flex gap-4">
+    <!-- Empty for now -->
+  </div>
 </header>
 
-<script>
-  // Mobile menu toggle
-  const button = document.querySelector("#menu-button");
-  const menu = document.querySelector("#main-menu");
-  const navItems = document.querySelectorAll("#main-menu > ul > li > a");
-
-  const toggleMenu = () => {
-    menu?.classList.toggle("hidden");
-    const isHidden = menu?.classList.contains("hidden");
-    button?.setAttribute("aria-expanded", `${!isHidden}`);
-  };
-
-  button?.addEventListener("click", toggleMenu);
-  navItems.forEach((item) => item?.addEventListener("click", toggleMenu));
-
-  // Intersection Observer to update active nav dot
-  const observerOptions = {
-    root: null,
-    rootMargin: "-50% 0px -50% 0px", // triggers when section crosses middle of viewport
-    threshold: 0,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.id;
-      navItems.forEach((item) => {
-        const href = item.getAttribute("href")?.replace("#", "");
-        if (href === id && entry.isIntersecting) {
-          item.classList.add("text-white", "md:after:opacity-100");
-        } else {
-          item.classList.remove("text-white", "md:after:opacity-100");
-        }
-      });
-    });
-  }, observerOptions);
-
-  document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
-
-  // Reconnect observer when tab is visible
-  document.onvisibilitychange = () => {
-    if (document.visibilityState === "hidden") observer.disconnect();
-    else document.querySelectorAll("section[id]").forEach((section) => observer.observe(section));
-  };
-</script>
-
-<style>
-  header {
-    animation-timeline: scroll();
-    animation-range: 0 650px;
-  }
-</style>
 
 
 
