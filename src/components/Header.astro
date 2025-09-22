@@ -3,11 +3,12 @@ import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
 import type { HeaderProps } from "@types";
 
+type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 w-full bg-black px-5 py-6 flex items-center justify-between">
-  <!-- Left: Logo + Desktop Navigation -->
+<header class="relative sticky top-0 z-50 flex items-center justify-between px-5 py-4 max-w-5xl mx-auto bg-black">
+  <!-- Left: Logo + Navigation -->
   <div class="flex items-center gap-6">
     <!-- Logo -->
     <a href="/" aria-label="Home link">
@@ -21,41 +22,41 @@ const { siteLogo, navLinks } = Astro.props;
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden sm:block">
-      <ul class="flex gap-6 ml-6">
-        {navLinks.map((link) => (
-          <li class="relative">
-            <a
-              href={link.href}
-              class={`text-neutral text-sm font-medium transition-colors relative
-                      after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2
-                      after:content-['•'] after:opacity-0 hover:after:opacity-100
-                      after:text-blue-500
-                      ${Astro.url.pathname === link.href ? 'after:opacity-100' : ''}`}
-            >
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+<nav class="hidden sm:block">
+  <ul class="flex gap-6">
+    {navLinks.map((link) => (
+      <li class="relative">
+        <a
+          href={link.href}
+          class={`text-neutral text-sm font-medium transition-colors relative
+                  after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2
+                  after:content-['•'] after:opacity-0 hover:after:opacity-100
+                  after:text-blue-500
+                  ${Astro.url.pathname === link.href ? 'after:opacity-100' : ''}`}
+        >
+          {link.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
 
   <!-- Right: Social Icons -->
   <div class="flex gap-3">
     <a href="mailto:sethcooliemon4@gmail.com" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Email.svg" alt="Email" class="w-4 h-4"/>
+      <img src="/Email.svg" alt="Email" class="w-4 h-4 text-white"/>
     </a>
 
     <a href="https://github.com/swilliams2000" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
+      <img src="/Github.svg" alt="GitHub" class="w-5 h-5 text-white"/>
     </a>
 
     <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Linkedin.svg" alt="LinkedIn" class="w-6 h-6"/>
+      <img src="/Linkedin.svg" alt="LinkedIn" class="w-6 h-6 text-white"/>
     </a>
   </div>
 
@@ -70,7 +71,7 @@ const { siteLogo, navLinks } = Astro.props;
   </button>
 
   <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="sm:hidden hidden absolute top-20 right-5 bg-black p-4 rounded-xl border border-neutral/40">
+  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 translate-x-full bg-black p-4 rounded-xl border border-neutral/40">
     <ul class="flex flex-col gap-3">
       {navLinks.map((link) => (
         <li>
@@ -101,6 +102,24 @@ const { siteLogo, navLinks } = Astro.props;
     button?.setAttribute("aria-expanded", String(!isHidden));
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
