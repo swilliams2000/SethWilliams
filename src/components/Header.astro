@@ -19,14 +19,14 @@ const { siteLogo, navLinks } = Astro.props;
       />
     </a>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- Desktop Navigation -->
+    <nav class="hidden sm:block">
       <ul class="flex gap-6">
         {navLinks.map((link) => (
           <li class="relative">
             <a
               href={link.href}
-              class="text-neutral text-sm font-medium transition-colors hover:text-white relative after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100"
+              class="text-gray-400 text-sm font-medium transition-colors hover:text-white relative after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2 after:content-['•'] after:opacity-0 hover:after:opacity-100"
             >
               {link.text}
             </a>
@@ -37,62 +37,63 @@ const { siteLogo, navLinks } = Astro.props;
   </div>
 
   <!-- Right: Social Icons -->
-  <div class="flex gap-4">
-    <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white transition-colors">
+  <div class="hidden sm:flex gap-4">
+    <a href="mailto:sethcooliemon4@gmail.com" class="text-gray-400 hover:text-white transition-colors">
       <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
     </a>
-    <a href="https://github.com/swilliams2000" class="text-neutral hover:text-white transition-colors">
+    <a href="https://github.com/swilliams2000" class="text-gray-400 hover:text-white transition-colors">
       <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
     </a>
-    <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-neutral hover:text-white transition-colors">
+    <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-gray-400 hover:text-white transition-colors">
       <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
     </a>
   </div>
-</header>
 
-<!-- Mobile Menu Button -->
-<button
-  id="menu-button"
-  class="sm:hidden px-2 text-neutral"
-  aria-expanded="false"
-  aria-controls="mobile-menu"
->
-  <!-- Add a menu icon component or SVG here -->
-  ☰
-</button>
+  <!-- Mobile Menu Button -->
+  <button
+    id="menu-button"
+    class="sm:hidden px-2 text-gray-400"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+  >
+    ☰
+  </button>
 
-<!-- Mobile Navigation -->
-<nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 bg-black p-4 rounded-xl border border-neutral/40">
-  <ul class="flex flex-col gap-3">
-    {navLinks.map((link) => (
-      <li>
-        <a href={link.href} class="text-neutral hover:text-white">{link.text}</a>
+  <!-- Mobile Navigation -->
+  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 bg-black p-4 rounded-xl border border-gray-600 z-50">
+    <ul class="flex flex-col gap-3">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="text-gray-400 hover:text-white">{link.text}</a>
+        </li>
+      ))}
+      <li class="flex gap-3 mt-2">
+        <a href="mailto:sethcooliemon4@gmail.com" class="text-gray-400 hover:text-white">
+          <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
+        </a>
+        <a href="https://github.com/swilliams2000" class="text-gray-400 hover:text-white">
+          <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
+        </a>
+        <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-gray-400 hover:text-white">
+          <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
+        </a>
       </li>
-    ))}
-    <li class="flex gap-3 mt-2">
-      <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white">
-        <img src="/Email.svg" alt="Email" class="w-5 h-5"/>
-      </a>
-      <a href="https://github.com/swilliams2000" class="text-neutral hover:text-white">
-        <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
-      </a>
-      <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-neutral hover:text-white">
-        <img src="/Linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
-      </a>
-    </li>
-  </ul>
-</nav>
+    </ul>
+  </nav>
+</header>
 
 <script>
   // Mobile menu toggle
   const menuButton = document.getElementById("menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
+
   menuButton?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("hidden");
     const isHidden = mobileMenu?.classList.contains("hidden");
     menuButton?.setAttribute("aria-expanded", String(!isHidden));
   });
 </script>
+
 
 
 
