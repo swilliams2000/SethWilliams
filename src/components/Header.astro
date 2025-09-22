@@ -3,11 +3,12 @@ import Menu from "@icons/Menu.astro";
 import { Image } from "astro:assets";
 import type { HeaderProps } from "@types";
 
+type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 max-w-5xl mx-auto bg-black">
-  <!-- Left: Logo + Desktop Navigation -->
+  <!-- Left: Logo + Navigation -->
   <div class="flex items-center gap-6">
     <!-- Logo -->
     <a href="/" aria-label="Home link">
@@ -41,17 +42,17 @@ const { siteLogo, navLinks } = Astro.props;
   <div class="flex gap-3">
     <a href="mailto:sethcooliemon4@gmail.com" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Email.svg" alt="Email" class="w-4 h-4"/>
+      <img src="/public/email.svg" alt="Email" class="w-4 h-4 text-white"/>
     </a>
 
     <a href="https://github.com/swilliams2000" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Github.svg" alt="GitHub" class="w-4 h-4"/>
+      <img src="/public/github.svg" alt="GitHub" class="w-4 h-4 text-white"/>
     </a>
 
     <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Linkedin.svg" alt="LinkedIn" class="w-4 h-4"/>
+      <img src="/public/linkedin.svg" alt="LinkedIn" class="w-4 h-4 text-white"/>
     </a>
   </div>
 
@@ -74,14 +75,14 @@ const { siteLogo, navLinks } = Astro.props;
         </li>
       ))}
       <li class="flex gap-3 mt-2">
-        <a href="mailto:sethcooliemon4@gmail.com" class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400">
-          <img src="/Email.svg" alt="Email" class="w-4 h-4"/>
+        <a href="mailto:sethcooliemon4@gmail.com" class="text-neutral hover:text-white">
+          <img src="/public/email.svg" alt="Email" class="w-5 h-5"/>
         </a>
-        <a href="https://github.com/swilliams2000" class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400">
-          <img src="/Github.svg" alt="GitHub" class="w-4 h-4"/>
+        <a href="https://github.com/swilliams2000" class="text-neutral hover:text-white">
+          <img src="/public/github.svg" alt="GitHub" class="w-5 h-5"/>
         </a>
-        <a href="https://www.linkedin.com/in/seth-m-williams/" class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400">
-          <img src="/Linkedin.svg" alt="LinkedIn" class="w-4 h-4"/>
+        <a href="https://www.linkedin.com/in/seth-m-williams/" class="text-neutral hover:text-white">
+          <img src="/public/linkedin.svg" alt="LinkedIn" class="w-5 h-5"/>
         </a>
       </li>
     </ul>
@@ -97,6 +98,11 @@ const { siteLogo, navLinks } = Astro.props;
     button?.setAttribute("aria-expanded", String(!isHidden));
   });
 </script>
+
+
+
+
+
 
 
 
