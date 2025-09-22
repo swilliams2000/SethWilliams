@@ -7,7 +7,7 @@ type Props = HeaderProps;
 const { siteLogo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 max-w-5xl mx-auto bg-black">
+<header class="relative sticky top-0 z-50 flex items-center justify-between px-5 py-4 max-w-5xl mx-auto bg-black">
   <!-- Left: Logo + Navigation -->
   <div class="flex items-center gap-6">
     <!-- Logo -->
@@ -71,7 +71,7 @@ const { siteLogo, navLinks } = Astro.props;
   </button>
 
   <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-0 bg-black p-4 rounded-xl border border-neutral/40">
+  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 translate-x-full bg-black p-4 rounded-xl border border-neutral/40">
     <ul class="flex flex-col gap-3">
       {navLinks.map((link) => (
         <li>
