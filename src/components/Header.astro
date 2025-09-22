@@ -16,47 +16,47 @@ const { siteLogo, navLinks } = Astro.props;
         src={siteLogo}
         width="45"
         height="45"
-        alt="Website Logo"
+        alt="website logo"
         class="rounded-full"
       />
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden sm:block">
-      <ul class="flex gap-6">
-        {navLinks.map((link) => (
-          <li class="relative">
-            <a
-              href={link.href}
-              class={`text-neutral text-sm font-medium transition-colors relative
-                      after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2
-                      after:content-['•'] after:opacity-0 hover:after:opacity-100
-                      after:text-blue-500`}
-              data-link={link.href}
-            >
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
+<nav class="hidden sm:block">
+  <ul class="flex gap-6">
+    {navLinks.map((link) => (
+      <li class="relative">
+        <a
+          href={link.href}
+          class={`text-neutral text-sm font-medium transition-colors relative
+                  after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-1 after:-translate-x-1/2
+                  after:content-['•'] after:opacity-0 hover:after:opacity-100
+                  after:text-blue-500
+                  ${Astro.url.pathname === link.href ? 'after:opacity-100' : ''}`}
+        >
+          {link.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
 
   <!-- Right: Social Icons -->
-  <div class="flex gap-3 justify-end">
+  <div class="flex gap-3">
     <a href="mailto:sethcooliemon4@gmail.com" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Email.svg" alt="Email" class="w-4 h-4"/>
+      <img src="/Email.svg" alt="Email" class="w-4 h-4 text-white"/>
     </a>
 
     <a href="https://github.com/swilliams2000" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Github.svg" alt="GitHub" class="w-5 h-5"/>
+      <img src="/Github.svg" alt="GitHub" class="w-5 h-5 text-white"/>
     </a>
 
     <a href="https://www.linkedin.com/in/seth-m-williams/" target="_blank"
        class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center hover:bg-gray-400 transition-colors">
-      <img src="/Linkedin.svg" alt="LinkedIn" class="w-6 h-6"/>
+      <img src="/Linkedin.svg" alt="LinkedIn" class="w-6 h-6 text-white"/>
     </a>
   </div>
 
@@ -71,7 +71,7 @@ const { siteLogo, navLinks } = Astro.props;
   </button>
 
   <!-- Mobile Menu -->
-  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-5 bg-black p-4 rounded-xl border border-neutral/40">
+  <nav id="mobile-menu" class="sm:hidden hidden absolute top-16 right-0 bg-black p-4 rounded-xl border border-neutral/40">
     <ul class="flex flex-col gap-3">
       {navLinks.map((link) => (
         <li>
@@ -94,7 +94,6 @@ const { siteLogo, navLinks } = Astro.props;
 </header>
 
 <script>
-  // Mobile menu toggle
   const button = document.getElementById("menu-button");
   const menu = document.getElementById("mobile-menu");
   button?.addEventListener("click", () => {
@@ -102,21 +101,16 @@ const { siteLogo, navLinks } = Astro.props;
     const isHidden = menu?.classList.contains("hidden");
     button?.setAttribute("aria-expanded", String(!isHidden));
   });
-
-  // Scrollspy for blue dot under nav links
-  const navLinksDesktop = document.querySelectorAll('nav ul li a[data-link]');
-  const sections = Array.from(navLinksDesktop).map(a => document.querySelector(a.dataset.link));
-
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + 100;
-    sections.forEach((section, i) => {
-      if (section && scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
-        navLinksDesktop.forEach(a => a.classList.remove('after:opacity-100'));
-        navLinksDesktop[i].classList.add('after:opacity-100');
-      }
-    });
-  });
 </script>
+
+
+
+
+
+
+
+
+
 
 
 
