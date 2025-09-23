@@ -41,7 +41,6 @@ export interface ProjectProps {
 export interface AboutProps {
   description: string;
   image: string;
-  bullets?: string[]; // optional array for bullet points
 }
 
 export interface HeaderProps {
