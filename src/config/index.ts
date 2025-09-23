@@ -117,6 +117,15 @@ export const SITE_CONTENT: SiteContent = {
     `,
 
     image: "/Seth-Big.jpg",
+    bullets: [
+    "Full-Stack Development",
+    "DevOps & Infrastructure",
+    "OOP & DSA",
+    "Cloud Computing",
+    "Python for ML",
+    "C#",
+  ],
+},
   },
 };
 
