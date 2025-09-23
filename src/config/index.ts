@@ -126,7 +126,6 @@ export const SITE_CONTENT: SiteContent = {
       "C#",
     ],
   },
-};
 
 // #5755ff
 
