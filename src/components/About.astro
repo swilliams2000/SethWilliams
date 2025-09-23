@@ -13,14 +13,16 @@ const { description, image, name } = Astro.props;
     <p class="w-auto text-base text-neutral md:pr-5" set:html={description}></p>
 
 <!-- Bullets -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-        {about.bullets.flat().map((bullet: string) => (
-          <div class="flex items-center gap-2">
-            <span class="text-accent font-bold">•</span>
-            <span>{bullet}</span>
-          </div>
-        ))}
-      </div>
+      {about.bullets.map((row: string[], rowIndex: number) => (
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4" key={rowIndex}>
+          {row.map((bullet: string) => (
+            <div class="flex items-center gap-2">
+              <span class="text-accent font-bold">•</span>
+              <span>{bullet}</span>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
 
     <!-- Polaroid container -->
