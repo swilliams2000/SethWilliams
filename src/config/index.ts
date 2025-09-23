@@ -110,20 +110,10 @@ export const SITE_CONTENT: SiteContent = {
   ],
   about: {
     description: `
-      <p>
       Hey, I’m Seth Williams 👋. I’m a Project Manager at <strong>Forge Battery</strong>, 
     working on digital twin and manufacturing initiatives. On the side, I contribute to AI/ML 
     for science projects with <strong>Hugging Face</strong>. I’m also pursuing a
     Master’s in Software Engineering at Georgia Tech.
-    </p>
-    
-      <li>Full-Stack Development</li>
-      <li>DevOps & Infrastructure</li>
-      <li>OOP & DSA</li>
-      <li>Cloud Computing</li>
-      <li>Python for ML</li>
-      <li>C#</li>
-    </ul>
     `,
 
     image: "/Seth-Big.jpg",
