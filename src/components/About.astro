@@ -14,7 +14,7 @@ const { description, image, name } = Astro.props;
 <!-- Bullets -->
       {bullets.length > 0 && (
         <ul class="list-none space-y-2">
-          {bullets.map((bullet: string) => (
+          {bullets.map((bullet) => (
             <li class="flex items-center gap-2">
               <span class="text-accent font-bold">•</span>
               <span>{bullet}</span>
