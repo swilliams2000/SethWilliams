@@ -115,10 +115,7 @@ export const SITE_CONTENT: SiteContent = {
     for science projects with <strong>Hugging Face</strong>. I’m also pursuing a part-time 
     Master’s in Software Engineering at Georgia Tech.
     `,
-    bullets: [
-    ["Full-Stack Development", "DevOps & Infrastructure", "OOP & DSA"],
-    ["Cloud Computing", "Python for ML", "C#"],
-  ],
+
     image: "/Seth-Big.jpg",
   },
 };
