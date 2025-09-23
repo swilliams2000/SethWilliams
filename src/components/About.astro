@@ -8,9 +8,25 @@ type Props = AboutProps & Pick<HeroProps, "name">;
 const { description, image, name } = Astro.props;
 ---
 
+
 <Section text="About Me" href="about">
   <div class="flex flex-col items-center gap-12 md:flex-row md:gap-8">
-    <p class="w-auto text-base text-neutral md:pr-5">{description}</p>
+    
+    <!-- Text content -->
+    <div class="w-full md:w-auto md:pr-5">
+      <!-- Intro -->
+      <p class="text-base text-neutral mb-4" set:html={intro}></p>
+
+      <!-- Skills list -->
+      <ul class="list-disc list-inside mb-4 space-y-2">
+        {skills.map(skill => (
+          <li>{skill}</li>
+        ))}
+      </ul>
+
+      <!-- Bio -->
+      <p class="text-base text-neutral" set:html={bio}></p>
+    </div>
 
     <!-- Polaroid container -->
     <div
