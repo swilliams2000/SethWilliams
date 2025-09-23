@@ -108,11 +108,22 @@ export const SITE_CONTENT: SiteContent = {
       image: "/Robot.jpg",
     },
   ],
-  about: {
-    description: `
-      Howdy, I’m Seth Williams, a passionate machine learning and blockchain developer exploring how intelligent systems and decentralized technologies can transform the way we live and work. I’m focused on building scalable, secure, and innovative solutions that push the boundaries of what’s possible in these fast-moving fields.
-
-      My foundation in chemical engineering gives me a unique perspective on solving complex problems, combining analytical thinking with practical, real world applications. By bridging my engineering background with my software experience, I aim to create impactful technologies that are both creative and grounded in strong technical rigor.
+about: {
+  intro: `
+    Hey, I’m Seth Williams 👋. I’m a Project Manager at <strong>Forge Battery</strong>, 
+    working on digital twin and manufacturing initiatives. On the side, I contribute to AI/ML 
+    for science projects with <strong>Hugging Face</strong>. I’m also pursuing a part-time 
+    Master’s in Software Engineering at Georgia Tech.
+  `,
+  skills: [
+    "Python",
+    "Full-Stack Development",
+    "DevOps & Infastructure",
+    "Cloud Computing",
+    "Web Development",
+  ],
+  bio: `
+    When Im not coding, you'll find me playing volleyball, soccer, tennis, hiking, and making cooking youtube videos
     `,
     image: "/Seth-Big.jpg",
   },
