@@ -11,8 +11,8 @@ const { description, image, name } = Astro.props;
 <Section text="About Me" href="about">
   <div class="relative w-full">
 
-    <!-- Text content -->
-    <div class="text-white text-base max-w-3xl" set:html={description}></div>
+    <!-- Text content with margin to avoid polaroid overlap -->
+    <div class="text-white text-base max-w-3xl mr-72" set:html={description}></div>
 
     <!-- Polaroid container pushed further right -->
     <div class="absolute top-0 right-0 w-64">
@@ -35,3 +35,4 @@ const { description, image, name } = Astro.props;
 
   </div>
 </Section>
+
