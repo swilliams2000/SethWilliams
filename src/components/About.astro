@@ -9,13 +9,13 @@ const { description, image, name } = Astro.props;
 ---
 
 <Section text="About Me" href="about">
-  <div class="flex flex-col items-start gap-6 md:flex-row md:gap-8">
+  <div class="flex flex-col items-start gap-6 md:flex-row md:gap-12">
 
     <!-- Text content -->
-    <div class="w-full md:w-1/2 text-white text-base" set:html={description}></div>
+    <div class="w-full md:w-3/5 text-white text-base" set:html={description}></div>
 
-    <!-- Polaroid container pushed to the right -->
-    <div class="w-full md:w-64 md:ml-auto flex-shrink-0">
+    <!-- Polaroid container pushed further right -->
+    <div class="w-full md:w-64 md:ml-12 flex-shrink-0">
       <div
         class="bg-white p-4 transform rotate-[5deg] md:rotate-[7deg] 
                transition-transform duration-500 hover:rotate-0 shadow-lg"
@@ -35,3 +35,4 @@ const { description, image, name } = Astro.props;
 
   </div>
 </Section>
+
