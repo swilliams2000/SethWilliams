@@ -1,7 +1,7 @@
 import type { SiteConfig, SiteContent } from "../types";
 
 export const SITE_CONFIG: SiteConfig = {
-  title: "Seth Williams — Emerging Tech Engineer | AI, ML, & Decentralized Systems",
+  title: "Seth's Portfolio",
   author: "Seth Williams",
   description:
     "Versatile Software and Chemical Engineer based in Orlando, FL, exploring AI/ML, blockchain, and full-stack development",
