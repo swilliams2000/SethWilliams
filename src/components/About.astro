@@ -9,7 +9,7 @@ const { description, image, name } = Astro.props;
 ---
 
 <Section text="About Me" href="about">
-  <div class={`flex flex-col md:flex-row gap-12 md:gap-8 ${Astro.props.class ?? ""}`}>
+  <div class={"flex flex-col md:flex-row gap-12 md:gap-8" + (extraClass || ""}`}>
     <div class="flex flex-col items-start w-full md:w-auto">
       <p class="w-auto text-base text-neutral md:pr-5" set:html={description}></p>
       <p class="mt-6 text-base text-neutral">
