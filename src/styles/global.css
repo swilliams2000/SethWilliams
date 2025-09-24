@@ -56,3 +56,10 @@ strong {
   color: var(--color-white); /* bright white */
   font-weight: 700;           /* bold */
 }
+.section-title-line {
+  height: 2px;
+  background: #0d5ace; /* Tailwind gray-300 */
+  border-radius: 1px;
+  min-width: 60px;
+  width: 100%;
+}

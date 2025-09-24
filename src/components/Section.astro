@@ -8,10 +8,11 @@ const { text, href } = Astro.props;
 ---
 
 <section id={href} class="py-24">
-  <h2
-    class="mb-14 font-serif text-4xl font-bold tracking-tighter text-white md:text-5xl"
-  >
-    {text}
-  </h2>
+  <div class="flex items-center mb-14">
+    <h2 class="font-serif text-4xl font-bold tracking-tighter text-white md:text-5xl whitespace-nowrap">
+      {text}
+    </h2>
+    <div class="section-title-line flex-1 ml-6"></div>
+  </div>
   <slot />
 </section>
