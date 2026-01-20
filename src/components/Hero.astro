@@ -42,6 +42,12 @@ const resumeUrl = "/Seth_Williams_Resume.pdf";
         My Resume
       </a>
     </div>
+
+    <a class="scroll-indicator mt-10" href="#about" aria-label="Scroll to About section">
+      <svg class="scroll-arrow" viewBox="0 0 24 24" role="img" aria-hidden="true">
+        <path d="M12 4v14m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
   </div>
 </section>
 
@@ -106,6 +112,27 @@ const resumeUrl = "/Seth_Williams_Resume.pdf";
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.08); }
+  }
+
+  .scroll-indicator {
+    color: #ffffff;
+    opacity: 0.8;
+    transition: opacity 200ms ease;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  .scroll-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
   }
 </style>
 
